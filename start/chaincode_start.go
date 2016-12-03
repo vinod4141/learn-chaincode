@@ -109,12 +109,13 @@ func (t *SimpleChaincode) write(stub shim.ChaincodeStubInterface, args []string)
 func ( t *SimpleChaincode) read(stub shim.ChaincodeStubInterface, args []string) ([]byte, error)  {
 	var name, jsonResp string
 	var err error
-
-	if len(args) != 1 {
+  fmt.Println("Entered The Read Section")
+	if len(args) != 2 {
 		return nil, errors.New("Incorrect number of arguments")
 	}
 
 	name = args[0]
+	fmt.Println("The other argument got is " + args[1])
 	valAsbytes, err := stub.GetState(name)
 	if err != nil {
 		jsonResp = "{\"Error\":\"Failed to get state for " + name + "\"}"
